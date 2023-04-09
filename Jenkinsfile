@@ -22,8 +22,6 @@ pipeline {
 
         stage('deploy'){
             steps {                
-                sh 'json-server --watch producto.json --port 5000'
-
                 sh 'npm run serve -- --port 3000'
             }
         }
