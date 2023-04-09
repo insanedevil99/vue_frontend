@@ -16,7 +16,7 @@ pipeline {
         stage('install'){
             steps {
                 git branch: 'main', url: 'https://github.com/insanedevil99/vue_frontend.git'
-                sh 'ln -sf "$(which node)" /usr/bin/node'
+                sh 'ln -s /usr/bin/nodejs /usr/bin/node'
                 sh 'npm install'
             }
         }
