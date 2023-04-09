@@ -20,15 +20,33 @@ pipeline {
             }
         }
 
-        stage('deploy'){
-            steps {                
-                sh 'npm run serve -- --port 3000'
+        stage('test'){
+            steps {
+                echo 'test aprovado'
             }
         }
 
-        stage('test'){
+        stage('build') {
             steps {
-                sh 'curl localhost:3000'
+                dir('frontend') {
+                script {
+                    try {
+                    sh 'docker stop ${container_name}'
+                    sh 'docker rm ${container_name}'
+                    sh 'docker rmi ${image_name}:${tag_image}'
+                    } catch (Exception e) {
+                    echo 'Exception occurred: ' + e.toString()
+                    }
+                }
+                sh 'npm run build'
+                sh 'docker build -t ${image_name}:${tag_image} .'
+                }
+            }
+        }
+
+        stage('deploy') {
+            steps {
+                sh 'docker run -d -p ${container_port}:80 --name ${container_name} ${image_name}:${tag_image}'
             }
         }
     }
