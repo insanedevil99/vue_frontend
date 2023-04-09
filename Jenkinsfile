@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'nodejs'
+        nodejs 'node'
     }
 
     parameters {
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/insanedevil99/vue_frontend.git'
 
-                sh 'npm install'
+                sh 'sudo npm install'
             }
         }
 
