@@ -17,6 +17,7 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/insanedevil99/vue_frontend.git'
                 sh 'npm install'
+                sh 'npm audit fix'
             }
         }
 
