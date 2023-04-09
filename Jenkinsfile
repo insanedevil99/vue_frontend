@@ -28,7 +28,6 @@ pipeline {
 
         stage('build') {
             steps {
-                dir('frontend') {
                 script {
                     try {
                     sh 'docker stop ${container_name}'
@@ -40,7 +39,7 @@ pipeline {
                 }
                 sh 'npm run build'
                 sh 'docker build -t ${image_name}:${tag_image} .'
-                }
+                
             }
         }
 
