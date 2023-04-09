@@ -17,13 +17,7 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/insanedevil99/vue_frontend.git'
 
-                sh 'sudo npm install'
-            }
-        }
-
-        stage('test'){
-            steps {
-                sh 'curl localhost:3000'
+                sh 'npm install'
             }
         }
 
@@ -32,6 +26,12 @@ pipeline {
                 sh 'json-server --watch producto.json --port 5000'
 
                 sh 'npm run serve -- --port 3000'
+            }
+        }
+
+        stage('test'){
+            steps {
+                sh 'curl localhost:3000'
             }
         }
     }
