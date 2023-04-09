@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'node'
+        nodejs 'nodejs'
     }
 
     parameters {
@@ -23,7 +23,7 @@ pipeline {
 
         stage('test'){
             steps {
-                sh 'curl localhost:80'
+                sh 'curl localhost:3000'
             }
         }
 
